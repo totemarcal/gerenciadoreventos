@@ -8,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.cleanmvvmapp.presenter.mvi.features.carro.CheckinIntent
+import com.example.cleanmvvmapp.presenter.mvi.features.carro.CheckinState
 import com.example.cleanmvvmapp.presenter.mvi.features.carro.EventIntent
 import com.example.cleanmvvmapp.presenter.mvi.features.carro.EventState
 import com.example.gerenciadordeeventos.R
 import com.example.gerenciadordeeventos.databinding.FragmentSecondBinding
+import com.example.gerenciadordeeventos.presenter.model.CheckinUiModel
 import com.example.gerenciadordeeventos.presenter.model.EventUiModel
+import com.example.gerenciadordeeventos.presenter.viewmodel.CheckinViewModel
 import com.example.gerenciadordeeventos.presenter.viewmodel.EventViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_first.*
@@ -27,6 +31,7 @@ class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
     private val viewModel : EventViewModel by viewModel()
+    private val viewModelCheckin : CheckinViewModel by viewModel()
     private var id: String = ""
 
     // This property is only valid between onCreateView and
@@ -38,6 +43,7 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
+
         return binding.root
 
     }
@@ -46,6 +52,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
+            viewModelCheckin.dispatchIntent(CheckinIntent.SetCheckin)
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
@@ -54,10 +61,31 @@ class SecondFragment : Fragment() {
         id = arguments?.getString("id").toString()
         viewModel.setId(id)
 
+        viewModelCheckin.liveData.observe(this,{ state ->
+            when(state) {
+                is CheckinState.SetCheckin -> {
+                    Toast.makeText(context, "Checink realizado com sucesso!", Toast.LENGTH_LONG).show()
+                }
+                is CheckinState.Error -> {
+                    Toast.makeText(context, state.error?.message, Toast.LENGTH_LONG).show()
+                }
+                is CheckinState.Loading -> {
+                    if(state.loading) {
+                        showLoading(true)
+                    }
+                    else {
+                        showLoading(false)
+                    }
+                }
+            }
+        })
+
+
         viewModel.liveData.observe(this,{ state ->
             when(state) {
                 is EventState.ResultEventId -> {
                     loadDisplay(state.data)
+                    viewModelCheckin.setCheckin(CheckinUiModel(state.data.id, state.data.title, ""))
                 }
                 is EventState.Error -> {
                     Toast.makeText(context, state.error?.message, Toast.LENGTH_LONG).show()
