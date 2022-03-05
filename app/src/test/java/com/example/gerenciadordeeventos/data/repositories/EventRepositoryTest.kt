@@ -37,7 +37,7 @@ class EventRepositoryTest {
     }
 
     @Test
-    fun testGetCarros () = runBlocking {
+    fun testGetEvent () = runBlocking {
         // arrange
         val listResponse = listOf(
             EventResponse("1","http://lproweb.procempa.com.br/pmpa/prefpoa/seda_news/usu_img/Papel%20de%20Parede.png","Feira de adoção de animais na Redenção","29.99"))
