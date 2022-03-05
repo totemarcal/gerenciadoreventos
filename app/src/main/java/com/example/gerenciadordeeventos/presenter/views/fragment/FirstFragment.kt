@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -69,11 +70,7 @@ class FirstFragment : Fragment(), OnCLickEvent {
                 }
             }
         })
-
-        Handler().postDelayed({
-            viewModel.dispatchIntent(EventIntent.LoadAllEvents)
-        }, 2000)
-
+        viewModel.dispatchIntent(EventIntent.LoadAllEvents)
     }
 
     private fun showLoading(show: Boolean) {
@@ -86,8 +83,9 @@ class FirstFragment : Fragment(), OnCLickEvent {
         recycler.layoutManager = LinearLayoutManager(context)
     }
 
-    override fun onClickEvent(carroUiModel: EventUiModel) {
-        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+    override fun onClickEvent(eventUiModel: EventUiModel) {
+        val bundle = bundleOf("id" to eventUiModel.id)
+        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundle)
     }
 
     override fun onDestroyView() {

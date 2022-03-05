@@ -4,4 +4,5 @@ import com.example.cleanmvvmapp.helper.view.ViewAction
 
 sealed class EventAction : ViewAction {
     object AllEvents : EventAction()
+    object EventId : EventAction()
 }

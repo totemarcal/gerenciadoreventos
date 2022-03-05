@@ -32,4 +32,21 @@ class EventRepositoryImpl (private val api: EventApi) : EventRepository {
             }
         }
     }
+
+    override suspend fun getEventId(id: String): ResultX<Event> {
+        val response = api.getEventID(id).parse()
+
+        return when (response) {
+            is ApiResponse.Success -> {
+                ResultX.Success(response.value.toEvent())
+            }
+            is ApiResponse.Failure -> {
+                return when (response.statusCode) {
+                    404 -> ResultX.Failure(NotFoundException())
+                    500 -> ResultX.Failure(ServerException())
+                    else -> ResultX.Failure(GetEventException())
+                }
+            }
+        }
+    }
 }

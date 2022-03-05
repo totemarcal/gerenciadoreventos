@@ -30,9 +30,9 @@ class EventsAdapter(
         val event = events[position]
 
         holder.itemView.apply {
-            tvTitle.text = event.title
-            tvId.text = event.id
-            Picasso.get().load(event.image).into(imgEvent);
+            tvTitle.text = event.id +" - "+ event.title
+            //tvId.text = event.id
+            Picasso.get().load(event.image).into(imgEvent)
             clRoot.setOnClickListener { onCLickEvent.onClickEvent(event) }
         }
     }

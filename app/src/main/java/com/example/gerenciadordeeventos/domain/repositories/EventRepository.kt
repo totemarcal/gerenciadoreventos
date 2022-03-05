@@ -6,4 +6,5 @@ import com.example.gerenciadordeeventos.helper.ResultX
 
 interface EventRepository {
     suspend fun getEvent(): ResultX<List<Event>>
+    suspend fun getEventId(id: String): ResultX<Event>
 }
