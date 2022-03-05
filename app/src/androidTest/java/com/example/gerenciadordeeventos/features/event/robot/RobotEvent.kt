@@ -1,6 +1,6 @@
 package com.example.gerenciadordeeventos.features.event.robot
 
-import androidx.test.rule.ActivityTestRule
+import android.support.test.rule.ActivityTestRule
 import com.example.cleanmvvmapp.test.features.common.ScreenRobot
 import com.example.gerenciadordeeventos.R
 import com.example.gerenciadordeeventos.presenter.views.activity.MainActivity
@@ -17,7 +17,7 @@ class RobotEvent {
         robot.waitForIdToAppear(RECYCLER,10)
     }
 
-    fun clicarEmCarroDaLista(pos: Int) {
+    fun clicarEmEventDaLista(pos: Int) {
         robot.clickOnItemList(RECYCLER,pos)
     }
 

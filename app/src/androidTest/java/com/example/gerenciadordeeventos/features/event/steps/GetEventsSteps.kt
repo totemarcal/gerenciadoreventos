@@ -1,5 +1,5 @@
 package com.example.gerenciadordeeventos.features.event.steps
-import androidx.test.rule.ActivityTestRule
+import android.support.test.rule.ActivityTestRule
 import com.example.gerenciadordeeventos.features.event.robot.RobotEvent
 import com.example.gerenciadordeeventos.presenter.viewmodel.EventViewModel
 import com.example.gerenciadordeeventos.presenter.views.activity.MainActivity
@@ -34,42 +34,42 @@ class GetEventsSteps {
         robot.verificarPrimeiraTela()
     }
 
-    @E("^a lista de carros aparecer$")
-    fun mostrarListaCarro() {
+    @E("^a lista de Events aparecer$")
+    fun mostrarListaEvent() {
         robot.verificaLista()
     }
 
-    @Quando("clicar em um carro na posição 1")
-    fun clicarEmUmcarro() {
-        robot.clicarEmCarroDaLista(1)
+    @Quando("clicar em um Event na posição 1")
+    fun clicarEmUmEvent() {
+        robot.clicarEmEventDaLista(1)
     }
 
-    @Quando("clicar em um carro na posição 2")
-    fun clicarEmUmcarro2() {
-        robot.clicarEmCarroDaLista(2)
+    @Quando("clicar em um Event na posição 2")
+    fun clicarEmUmEvent2() {
+        robot.clicarEmEventDaLista(2)
     }
 
-    @Quando("clicar em um carro na posição 3")
-    fun clicarEmUmcarro3() {
-        robot.clicarEmCarroDaLista(3)
+    @Quando("clicar em um Event na posição 3")
+    fun clicarEmUmEvent3() {
+        robot.clicarEmEventDaLista(3)
     }
 
-    @Quando("clicar em um carro na posição 4")
-    fun clicarEmUmcarro4() {
-        robot.clicarEmCarroDaLista(4)
+    @Quando("clicar em um Event na posição 4")
+    fun clicarEmUmEvent4() {
+        robot.clicarEmEventDaLista(4)
     }
 
-    @Quando("clicar em um carro na posição 5")
-    fun clicarEmUmcarro5() {
-        robot.clicarEmCarroDaLista(5)
+    @Quando("clicar em um Event na posição 5")
+    fun clicarEmUmEvent5() {
+        robot.clicarEmEventDaLista(5)
     }
 
-    @Quando("clicar em um carro na posição 6")
-    fun clicarEmUmcarro6() {
-        robot.clicarEmCarroDaLista(6)
+    @Quando("clicar em um Event na posição 6")
+    fun clicarEmUmEvent6() {
+        robot.clicarEmEventDaLista(6)
     }
 
-    @Entao("^vou visualizar os detalhes do carro$")
+    @Entao("^vou visualizar os detalhes do Event$")
     fun visualizarLista() {
         robot.verificaTelaDetalhes()
     }
