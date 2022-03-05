@@ -5,7 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-private const val BASE_URL = "http://5f5a8f24d44d640016169133.mockapi.io/"
+private const val BASE_URL = "https://5f5a8f24d44d640016169133.mockapi.io/"
 
 class RetrofitService {
     private val retrofit = Retrofit.Builder()
